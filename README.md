@@ -1,5 +1,7 @@
 # Virtual Try-On Chatbot
 
+## NOTE: For sample images to test out with, please check the 'Assets' folder
+
 This project is a **Virtual Try-On Chatbot** built using **FastAPI** that allows users to upload images of a person and a garment via WhatsApp. The bot processes the images and provides a virtual try-on experience by combining the two images and returning the result. The project integrates various services such as **Twilio**, **OpenAI**, **GitHub**, and a **Virtual Try-On API** to achieve its functionality.
 
 ## Features
