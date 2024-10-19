@@ -13,7 +13,7 @@ This project is a **Virtual Try-On Chatbot** built using **FastAPI** that allows
 
 ### Key Components
 
-- **main.py**: The entry point for the FastAPI application. It handles incoming requests, processes them based on user input, and integrates with helper functions.
+- **src/app.py**: The entry point for the FastAPI application. It handles incoming requests, processes them based on user input, and integrates with helper functions.
 - **db_helpers.py**: Handles all interactions with the SQLite database for storing and retrieving user images.
 - **github_helpers.py**: Contains functions for uploading images to GitHub and retrieving download URLs.
 - **openai_helpers.py**: Interacts with OpenAI to handle text-based queries from users.
