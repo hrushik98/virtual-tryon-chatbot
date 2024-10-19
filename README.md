@@ -1,7 +1,3 @@
-Here's a professional and detailed `README.md` file for your project:
-
----
-
 # Virtual Try-On Chatbot
 
 This project is a **Virtual Try-On Chatbot** built using **FastAPI** that allows users to upload images of a person and a garment via WhatsApp. The bot processes the images and provides a virtual try-on experience by combining the two images and returning the result. The project integrates various services such as **Twilio**, **OpenAI**, **GitHub**, and a **Virtual Try-On API** to achieve its functionality.
@@ -9,29 +5,11 @@ This project is a **Virtual Try-On Chatbot** built using **FastAPI** that allows
 ## Features
 
 - Users can interact with the chatbot via WhatsApp using Twilio.
-- Users can send images with specific captions ("person" or "garment") to simulate a virtual try-on.
-- The chatbot can process text-based queries using OpenAI's GPT model.
+- Users can send images with specific captions ("PERSON" or "GARMENT") to simulate a virtual try-on.
+- The chatbot can process text-based queries using OpenAI's GPT 4o mini model and the images with https://huggingface.co/spaces/Nymbo/Virtual-Try-On
 - Images are stored and managed using a local SQLite database.
 - Uploaded images are stored on GitHub for easy access.
 - Once both images are received (person and garment), the system integrates with a try-on API and returns a combined image of the person wearing the garment.
-
-## Project Structure
-
-```plaintext
-/project_root
-    /src
-        /helpers
-            __init__.py                 # Makes the helpers folder a package
-            db_helpers.py                # Helper functions for interacting with SQLite database
-            github_helpers.py            # Helper functions for uploading files to GitHub
-            openai_helpers.py            # Helper functions for interacting with OpenAI API
-            tryon_api_helpers.py         # Helper functions for interacting with the Virtual Try-On API
-    .env                                # Environment variables
-    main.py                             # Main FastAPI application
-    README.md                           # Project documentation
-    requirements.txt                    # Python dependencies
-    user_data.db                        # SQLite database for storing user data
-```
 
 ### Key Components
 
@@ -47,7 +25,7 @@ This project is a **Virtual Try-On Chatbot** built using **FastAPI** that allows
 
 Ensure you have the following installed:
 
-- **Python 3.8+**
+- **Python 3.12**
 - **SQLite3** (included with Python)
 - **pip** (Python package installer)
 
@@ -57,20 +35,7 @@ You will also need:
 - An **OpenAI API key**.
 - A **GitHub repository** and personal access token for uploading images.
 - Access to a **Virtual Try-On API**.
-
-### Environment Variables
-
-Create a `.env` file in the project root with the following variables:
-
-```plaintext
-TWILIO_ACC_SID=your_twilio_account_sid
-TWILIO_AUTH_TOKEN=your_twilio_auth_token
-TWILIO_PHONE_NUMBER=your_twilio_phone_number
-OPENAI_API_KEY=your_openai_api_key
-GITHUB_TOKEN=your_github_personal_access_token
-GITHUB_REPO=your_github_repository
-VIRTUAL_TRYON_API_KEY=your_virtual_tryon_api_key
-```
+- Check the .env.example for more info 
 
 ### Installation
 
@@ -97,7 +62,7 @@ pip install -r requirements.txt
 4. **Run the application**:
 
 ```bash
-uvicorn main:app --reload
+uvicorn app:app --reload
 ```
 
 5. **Setup Twilio Webhook**:
@@ -106,19 +71,21 @@ uvicorn main:app --reload
 ### Usage
 
 1. **Starting a session**:
-   - Send a message to the WhatsApp number connected to Twilio with the word `start`.
+   - Send a message to the WhatsApp number connected to Twilio by scanning the QR code.
+     ![image](https://github.com/user-attachments/assets/d23e3957-1bbd-494f-b6cf-14aae3cb2c07)
+
    - The bot will ask you to upload a person image and a garment image.
 
 2. **Uploading Images**:
-   - Send an image with the caption `person` to upload the person image.
-   - Send an image with the caption `garment` to upload the garment image.
+   - Send an image with the caption `PERSON` to upload the person image.
+   - Send an image with the caption `GARMENT` to upload the garment image.
 
 3. **Processing**:
-   - Once both images are uploaded, type `start` again to begin the virtual try-on process.
+   - Once both images are uploaded, type `START` again to begin the virtual try-on process.
    - The bot will respond with the combined image of the person wearing the garment.
 
 4. **Reset Session**:
-   - To reset the session at any time, send the message `reset`.
+   - To reset the session at any time, send the message `RESET`.
 
 ### Project Workflow
 
@@ -127,31 +94,31 @@ uvicorn main:app --reload
 3. **Processing Images**: When both images are received, the system sends them to the Virtual Try-On API to generate a combined image.
 4. **Response**: The bot replies to the user with the generated image via WhatsApp.
 
-### Helper Functions
-
-Each helper file in the `src/helpers/` directory serves a specific role in the app:
-
-- **db_helpers.py**: Functions for interacting with the SQLite database (store, retrieve, reset).
-- **github_helpers.py**: Functions to handle file uploads to GitHub.
-- **openai_helpers.py**: Functions for interacting with the OpenAI API for processing user queries.
-- **tryon_api_helpers.py**: Functions for sending images to the try-on API and retrieving results.
-
 ## Example Session
 
-1. User sends "start" message via WhatsApp.
+1. User scans the QR code.
 2. The bot asks for a person image.
-3. The user uploads a person image with the caption "person".
+3. The user uploads a person image with the caption "PERSON".
 4. The bot confirms and asks for a garment image.
-5. The user uploads a garment image with the caption "garment".
+5. The user uploads a garment image with the caption "GARMENT".
 6. The bot processes both images and replies with a combined image.
 
-## Contributing
+## SCREENSHOTS
 
-If you'd like to contribute, please create a fork of the repository and submit a pull request with a detailed description of the changes.
+1. User uploads person image with caption as 'PERSON'
 
-## License
+![image](https://github.com/user-attachments/assets/8b4fbc19-cf60-4405-91b7-23e7344e5399)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+2. User uploads garment image with caption as 'GARMENT'
+
+![image](https://github.com/user-attachments/assets/b1f56095-fb70-4abf-ace0-f2b8e2dc7600)
+
+3. User gets the result
+
+![image](https://github.com/user-attachments/assets/b3375e68-8182-42e7-aab7-a71ce8e3604c)
+
+
+
 
 ## Acknowledgments
 
@@ -160,6 +127,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [GitHub API](https://docs.github.com/en/rest) for file storage.
 - [Nymbo Virtual Try-On API](https://nymbo.tryonapi.com/) for virtual try-on capabilities.
 
----
-
-This `README.md` file includes all the necessary details to set up, run, and contribute to the project. It provides an overview of the system, key components, and instructions for setting up the environment and using the chatbot.
